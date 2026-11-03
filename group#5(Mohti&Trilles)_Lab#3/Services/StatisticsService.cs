@@ -1,4 +1,5 @@
-﻿using Amazon.DynamoDBv2.DataModel;
+﻿using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 using group_5_Mohti_Trilles__Lab_3.Model;
 
 namespace group_5_Mohti_Trilles__Lab_3.Services
@@ -7,9 +8,9 @@ namespace group_5_Mohti_Trilles__Lab_3.Services
     {
         private readonly DynamoDBContext _dynamoDBContext;
 
-        public StatisticsService(DynamoDBContext dynamoDBContext)
+        public StatisticsService(IAmazonDynamoDB dynamoDb)
         {
-            _dynamoDBContext = dynamoDBContext;
+            _dynamoDBContext = new DynamoDBContext(dynamoDb);
         }
 
         public async Task SaveStatistic(PodcastStatistic statistic)
